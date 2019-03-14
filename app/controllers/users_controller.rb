@@ -26,6 +26,8 @@ class UsersController < ApplicationController
     @user.name = @user.email.split('@').first
 
     if @user.save
+      session[:user] = @user.id
+
       redirect_to edit_user_path(@user.id), notice: 'Thank you for siging up'
     else
       flash[:error] = @user.errors.full_messages
