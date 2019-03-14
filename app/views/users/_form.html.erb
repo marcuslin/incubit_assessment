@@ -1,0 +1,26 @@
+<h1><%= title %></h1>
+<%= form_for @user do |f| %>
+  <% if flash.any? %>
+    <%= render "flash", flash: flash %>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <% if @user.id.nil? %>
+      <%= f.text_field :email %>
+    <% else %>
+      <%= @user.email %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.text_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign Up" %>
+  </div>
+<% end %>
