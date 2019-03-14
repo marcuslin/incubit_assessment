@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -8,7 +12,7 @@ class UsersController < ApplicationController
     @user.name = @user.email.split('@').first
 
     if @user.save
-      redirect_to root_url, notice: 'Thank you for siging up'
+      redirect_to edit_user_path(@user.id), notice: 'Thank you for siging up'
     else
       flash[:error] = @user.errors.full_messages
       render :new
