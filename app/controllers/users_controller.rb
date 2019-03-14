@@ -28,6 +28,8 @@ class UsersController < ApplicationController
     if @user.save
       session[:user] = @user.id
 
+      UsersMailer.welcome(@user).deliver_now
+
       redirect_to edit_user_path(@user.id), notice: 'Thank you for siging up'
     else
       flash[:error] = @user.errors.full_messages
