@@ -1,7 +1,7 @@
 <h1><%= title %></h1>
 <%= form_for @user do |f| %>
   <% if flash.any? %>
-    <%= render "flash", flash: flash %>
+    <%= render "layouts/flash", flash: flash %>
   <% end %>
 
   <div class="field">
