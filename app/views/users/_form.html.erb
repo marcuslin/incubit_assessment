@@ -4,14 +4,7 @@
     <%= render "layouts/flash", flash: flash %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <% if @user.id.nil? %>
-      <%= f.text_field :email %>
-    <% else %>
-      <%= @user.email %>
-    <% end %>
-  </div>
+  <%= render "layouts/users/#{ action_name }.html.erb", form: f %>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
