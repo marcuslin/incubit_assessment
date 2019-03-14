@@ -1,0 +1,18 @@
+<h1>Sign In</h1>
+<%= form_tag sessions_path do %>
+  <% if flash.any? %>
+    <%= render "layouts/flash", flash: flash %>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Sign In" %>
+  </div>
+<% end %>
