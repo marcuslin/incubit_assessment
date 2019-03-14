@@ -3,7 +3,21 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
   end
 
+  def update
+    @user = User.find_by_id(params[:id])
+
+    if @user.update_attributes(user_params)
+      flash[:notice] = 'Thank you for siging up'
+    else
+      flash[:error] = @user.errors.full_messages
+    end
+
+    redirect_to edit_user_path(params[:id])
+  end
+
   def new
+    redirect_to edit_user_path(session[:user]) if current_user
+
     @user = User.new
   end
 
