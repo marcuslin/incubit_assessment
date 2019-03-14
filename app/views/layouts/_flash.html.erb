@@ -1,7 +1,11 @@
 <% if flash[:notice].present? %>
   <li><%= flash[:notice] %></li>
 <% else %>
-  <% flash[:error].each do |error_msg| %>
-    <li><%= error_msg %></li>
+  <% if flash[:error].class == Array %>
+    <% flash[:error].each do |error_msg| %>
+      <li><%= error_msg %></li>
+    <% end %>
+  <% else %>
+    <%= flash[:error] %>
   <% end %>
 <% end %>
