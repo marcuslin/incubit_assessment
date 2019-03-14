@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user] = user.id
       redirect_to edit_user_path(user.id), notice: "Welcome back! #{ user.name }"
     else
-      flash[:error] = ["Invalid Email or Password"]
+      flash[:error] = "Invalid Email or Password"
       render :new
     end
   end
