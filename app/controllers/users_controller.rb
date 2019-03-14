@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
 
     if @user.update_attributes(user_params)
-      flash[:notice] = 'Thank you for siging up'
+      flash[:notice] = 'Updated'
     else
       flash[:error] = @user.errors.full_messages
     end
@@ -40,6 +40,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
   end
 end
