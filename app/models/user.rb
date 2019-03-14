@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
+  validates :name, presence: true, length: { minimum: 5 }, on: :update
 end
