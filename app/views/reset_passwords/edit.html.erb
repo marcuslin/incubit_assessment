@@ -1,0 +1,19 @@
+<h1>Reset Password</h1>
+<%= form_for(@user, url: reset_password_path(params[:token])) do |f| %>
+  <% if flash.any? %>
+    <%= render "layouts/flash", flash: flash %>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
