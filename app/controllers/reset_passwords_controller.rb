@@ -10,7 +10,7 @@ class ResetPasswordsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user.present?
-      user.reset_password_sent_at = Time.now
+      user.reset_token_expired_at = Time.now + 6.hours
       user.regenerate_reset_password_token
 
       ResetPasswordMailer.instruction(user).deliver_now
@@ -32,6 +32,7 @@ class ResetPasswordsController < ApplicationController
       flash[:error] = @user.errors.full_messages
     else
       flash[:notice] = "Password resets"
+
       @user.update_attributes(user_params)
     end
 
@@ -41,7 +42,7 @@ class ResetPasswordsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation, :reset_token_expired_at)
   end
 
   def get_user
@@ -49,7 +50,7 @@ class ResetPasswordsController < ApplicationController
   end
 
   def valid_token
-    unless (@user && @user.reset_password_sent_at < 6.hours.from_now)
+    unless (@user &&  Time.now < @user.reset_token_expired_at)
       flash[:error] = "Token has expired."
 
       redirect_to root_path
