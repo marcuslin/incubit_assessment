@@ -37,16 +37,18 @@ gem 'bcrypt'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'factory_bot_rails'
+  gem 'pry'
 end
 
 group :development do
   gem 'letter_opener'
-  gem 'pry'
   gem 'rb-readline'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
