@@ -17,6 +17,14 @@ FactoryBot.define do
       password { "password" }
       password_confirmation { 'pwd' }
     end
+
+    factory :valid_name do
+      name { "username" }
+    end
+
+    factory :invalid_name do
+      name { "name" }
+    end
   end
 
 end
