@@ -12,7 +12,7 @@ and the directory you want to place this project
 * Install gems by executing `bundle` in console under project directory
 
 * Rename both databse.example.yml and secrets.example.yml
-Rename both these files by executing the commande below:
+Rename both these files by executing the command below:
 ```
 mv config/database.example.yml config/database.yml
 mv config/secrets.example.yml config/secrets.yml
