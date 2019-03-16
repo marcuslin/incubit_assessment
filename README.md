@@ -9,8 +9,7 @@
 and the directory you want to place this project
 
 ## Setting up environment
-* Install gems
-Execute `bundle` in the project directory
+* Install gems by executing `bundle` in console under project directory
 
 * Rename both databse.example.yml and secrets.example.yml
 Rename both these files by executing the commande below:
@@ -25,8 +24,7 @@ mv config/secrets.example.yml config/secrets.yml
 rails db:create
 ```
 
-* Database migration
-* Execute the command below for migrating db
+* Execute the command below for db migration
 ```
 rails db:migrate
 ```
@@ -37,7 +35,7 @@ rails db:migrate
 rspec spec/
 ```
 
-* For running specific test execute in console
+* For running specific test execute the command below in console
 ```
 rspec spec/{ test_type }/{ filename }_spec.rb
 ```
