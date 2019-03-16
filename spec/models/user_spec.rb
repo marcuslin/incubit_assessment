@@ -16,4 +16,14 @@ RSpec.describe User, type: :model do
   it "is not valid with wrong password confirmation" do
     expect(build(:invalid_confirmation)).to_not be_valid
   end
+
+  it "is not valid when email is not unique" do
+    user = build(:user)
+    duplicated_user = build(:user)
+
+    user.save
+    duplicated_user.save
+
+    expect(duplicated_user.errors).to have_key(:email)
+  end
 end
