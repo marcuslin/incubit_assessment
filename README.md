@@ -5,12 +5,10 @@
 * Database: Postgresql
 
 ## Clone project
----
 * Execute `git clone git@github.com:marcuslin/incubit_assessment.git` in your console,
 and the directory you want to place this project
 
 ## Setting up environment
----
 * Install gems
 Execute `bundle` in the project directory
 
@@ -35,13 +33,11 @@ rails db:migrate
 
 ## Test
 * Execute the commad below to run all tests in console
----
 ```
 rspec spec/
 ```
 
 * For running specific test execute in console
----
 ```
 rspec spec/{ test_type }/{ filename }_spec.rb
 ```
