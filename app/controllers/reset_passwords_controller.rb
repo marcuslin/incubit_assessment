@@ -10,8 +10,9 @@ class ResetPasswordsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user.present?
-      user.reset_token_expired_at = Time.now + 6.hours
-      user.regenerate_reset_password_token
+			user.reset_token_expired_at = Time.now + 6.hours
+			user.reset_password_token = SecureRandom.urlsafe_base64(nil, false)
+			user.save(validate: false)
 
       ResetPasswordMailer.instruction(user).deliver_now
 
@@ -33,7 +34,8 @@ class ResetPasswordsController < ApplicationController
     else
       flash[:notice] = "Password resets"
 
-      @user.update_attributes(user_params)
+      @user.password = user_params[:password]
+      @user.save(validate: false)
     end
 
     redirect_to root_url
@@ -51,7 +53,7 @@ class ResetPasswordsController < ApplicationController
 
   def valid_token
     unless (@user &&  Time.now < @user.reset_token_expired_at)
-      flash[:error] = "Token has expired."
+      flash[:error] = "Token is invalid or has expired."
 
       redirect_to root_path
     end
@@ -65,8 +67,6 @@ class ResetPasswordsController < ApplicationController
       @user.errors.add(:password, "can't be empty")
     elsif pwd.length < 8
       @user.errors.add(:password, "should be more than 8 characters")
-    elsif pwd_conf.blank?
-      @user.errors.add(:password_confirmation, "can't be empty")
     elsif pwd_conf != pwd
       @user.errors.add(:password, "should match with Password confirmation")
     end
