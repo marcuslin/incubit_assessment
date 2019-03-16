@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user] = ''
+    session[:user] = nil
     redirect_to root_path, notice: "Bye!!"
   end
 end
