@@ -10,9 +10,9 @@ class ResetPasswordsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user.present?
-			user.reset_token_expired_at = Time.now + 6.hours
-			user.reset_password_token = SecureRandom.urlsafe_base64(nil, false)
-			user.save(validate: false)
+      user.reset_token_expired_at = Time.now + 6.hours
+      user.reset_password_token = SecureRandom.urlsafe_base64(nil, false)
+      user.save(validate: false)
 
       ResetPasswordMailer.instruction(user).deliver_now
 
